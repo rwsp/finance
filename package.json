@@ -3,15 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/types": "^0.7.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/react-modal": "^3.10.1",
+    "@types/react-radio-group": "^3.0.2",
     "axios": "^0.19.0",
+    "emotion": "^10.0.27",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.17.0",
+    "formik": "^2.0.8",
     "json-server": "^0.15.1",
+    "lint": "^0.7.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-modal": "^3.11.1",
+    "react-radio-group": "^3.0.3",
     "react-scripts": "3.3.0",
-    "read-file": "^0.2.0"
+    "read-file": "^0.2.0",
+    "typescript": "^3.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0"
   }
 }

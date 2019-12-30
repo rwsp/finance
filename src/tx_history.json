@@ -1,0 +1,44 @@
+{
+  "tx": [
+    {
+      "id": 0,
+      "date": "0",
+      "partyId": "0",
+      "amount": 5.01,
+      "typeId": 0,
+      "subtypeId": 0
+    },
+    {
+      "id": 1,
+      "date": "1",
+      "partyId": "1",
+      "amount": 1,
+      "typeId": "1",
+      "subtypeId": "1"
+    },
+    {
+      "id": 2,
+      "date": "02",
+      "partyId": 2,
+      "amount": -2.01,
+      "typeId": 2,
+      "subtypeId": 2
+    },
+    {
+      "id": 3,
+      "date": "2019-12-30T09:55:23.438Z",
+      "partyId": 0,
+      "amount": -2,
+      "typeId": 0,
+      "subtypeId": 0
+    },
+    {
+      "id": 4,
+      "date": "2019-12-30T09:57:21.517Z",
+      "partyId": 0,
+      "amount": 8.5,
+      "typeId": 0,
+      "subtypeId": 0
+    }
+  ]
+}
