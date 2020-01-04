@@ -1,0 +1,34 @@
+{
+  "tx": [
+    {
+      "id": 0,
+      "date": "2020-01-01",
+      "partyId": 0,
+      "amount": 12.34,
+      "typeId": 0,
+      "subtypeId": 0
+    }
+  ],
+  "parties": [
+    {
+      "id": 0,
+      "name": "Wal-Mart"
+    },
+    {
+      "id": 1,
+      "name": "Amazon"
+    }
+  ],
+  "types": [
+    {
+      "id": 0,
+      "name": "Food"
+    }
+  ],
+  "subtypes": [
+    {
+      "id": 0,
+      "name": "Grocery"
+    }
+  ]
+}
