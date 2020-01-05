@@ -1,19 +1,18 @@
 export interface Tx {
-    id: number;
-    date: Date;
-    partyId: number;
+    date: string;
+    party: string;
     amount: number;
-    typeId: number;
-    subtypeId: number;
+    type: string;
+    subtype: string;
 }
 
-export enum TxType {
+export enum TxDirection {
     // eslint-disable-next-line no-unused-vars
     credit = 0,
     // eslint-disable-next-line no-unused-vars
     debit = 1,
 }
 
-export const isCredit = (t: TxType) => t === TxType.credit;
-export const isDebit = (t: TxType) => t === TxType.debit;
+export const isCredit = (t: TxDirection) => t === TxDirection.credit;
+export const isDebit = (t: TxDirection) => t === TxDirection.debit;
 

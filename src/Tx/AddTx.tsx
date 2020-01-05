@@ -1,59 +1,43 @@
 import React, {useState} from "react";
 import {Field, Form, Formik} from "formik";
 // eslint-disable-next-line no-unused-vars
-import {isCredit, Tx, TxType} from "./module";
+import {isCredit, Tx, TxDirection} from "./module";
 import {Radio, RadioGroup} from "react-radio-group";
 
-const defaultFormValues = (nextId: number): Tx => ({
-  id: nextId,
-  date: new Date(),
-  partyId: 0,
-  amount: -1,
-  typeId: 0,
-  subtypeId: 0,
+const defaultFormValues = (): Tx => ({
+  date: "01-01-1990",
+  party: "",
+  amount: 0,
+  type: "",
+  subtype: "",
 });
 
 type Props = {
     balance: number;
-    nextId: number;
     saveMethods: any;
 };
 
 const AddTx: React.FC<Props> = (props: Props) => {
-  const [txType, setTxType] = useState(TxType.credit);
-  const handleTxTypeChange = (value: TxType) => setTxType(value);
+  const [txType, setTxType] = useState(TxDirection.credit);
+  const handleTxTypeChange = (value: TxDirection) => setTxType(value);
 
   const onSubmit = (tx: Tx) => {
-    props.saveMethods.tx(
-      isCredit(txType)
-        ? {
-          id: props.nextId,
-          date: tx.date,
-          partyId: tx.partyId,
-          amount: tx.amount * -1,
-          typeId: tx.typeId,
-          subtypeId: tx.subtypeId,
-        }
-        : {
-          id: props.nextId,
-          date: tx.date,
-          partyId: tx.partyId,
-          amount: tx.amount,
-          typeId: tx.typeId,
-          subtypeId: tx.subtypeId,
-        }
-    );
+    const obj: Tx = tx;
+    if (isCredit(txType)) {
+      obj.amount = obj.amount * -1;
+    }
+    props.saveMethods.tx(obj);
   };
 
   return (
     <>
       <span>{props.balance}</span>
       <RadioGroup selectedValue={txType} onChange={handleTxTypeChange}>
-        <Radio value={TxType.credit} />Credit
-        <Radio value={TxType.debit} />Debit
+        <Radio value={TxDirection.credit} />Credit
+        <Radio value={TxDirection.debit} />Debit
       </RadioGroup>
       <Formik
-        initialValues={defaultFormValues(props.nextId)}
+        initialValues={defaultFormValues()}
         onSubmit={onSubmit}>
         {  props => (
           <Form>

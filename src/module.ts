@@ -1,4 +1,4 @@
-export type DomainObject = {
-  id: number;
+export type TxType = {
   name: string;
-};
+  subtypes: string[];
+}

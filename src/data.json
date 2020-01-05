@@ -3,32 +3,26 @@
     {
       "id": 0,
       "date": "2020-01-01",
-      "partyId": 0,
-      "amount": 12.34,
-      "typeId": 0,
-      "subtypeId": 0
-    }
-  ],
-  "parties": [
-    {
-      "id": 0,
-      "name": "Wal-Mart"
+      "party": "Wal-Mart",
+      "amount": -12.34,
+      "type": "Food",
+      "subtype": "Grocery"
     },
     {
-      "id": 1,
-      "name": "Amazon"
-    }
-  ],
-  "types": [
+      "date": "01-01-1990",
+      "party": "a",
+      "amount": -1,
+      "type": "Food",
+      "subtype": "Fast",
+      "id": 1
+    },
     {
-      "id": 0,
-      "name": "Food"
-    }
-  ],
-  "subtypes": [
-    {
-      "id": 0,
-      "name": "Grocery"
+      "date": "01-01-1990",
+      "party": "Wal-Mart",
+      "amount": -10,
+      "type": "Home",
+      "subtype": "Decor",
+      "id": 2
     }
   ]
 }
