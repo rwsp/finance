@@ -16,7 +16,7 @@ const defaultFormValues = (nextId: number): Tx => ({
 type Props = {
     balance: number;
     nextId: number;
-    saveTx: (tx: Tx) => void;
+    saveMethods: any;
 };
 
 const AddTx: React.FC<Props> = (props: Props) => {
@@ -24,7 +24,7 @@ const AddTx: React.FC<Props> = (props: Props) => {
   const handleTxTypeChange = (value: TxType) => setTxType(value);
 
   const onSubmit = (tx: Tx) => {
-    props.saveTx(
+    props.saveMethods.tx(
       isCredit(txType)
         ? {
           id: props.nextId,
@@ -55,7 +55,7 @@ const AddTx: React.FC<Props> = (props: Props) => {
       <Formik
         initialValues={defaultFormValues(props.nextId)}
         onSubmit={onSubmit}>
-        {() => (
+        {  props => (
           <Form>
             <Field type="date" name="date"/>
             <Field type="input" name="party"/>

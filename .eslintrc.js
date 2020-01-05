@@ -28,11 +28,7 @@ module.exports = {
 	"rules": {
 		"indent": [
 			"error",
-			"tab"
-		],
-		"linebreak-style": [
-			"error",
-			"windows"
+			2
 		],
 		"quotes": [
 			"error",
@@ -41,6 +37,12 @@ module.exports = {
 		"semi": [
 			"error",
 			"always"
+		],
+		"no-unused-vars": [
+			"error",
+			{ "args": "none" }
 		]
 	}
+	/*eslint no-unused-vars: ["error", { "args": "[iI]gnored" }]*/
+
 };

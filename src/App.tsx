@@ -10,6 +10,7 @@ import {colors} from "./Tx/colors";
 import {Party} from "./Party/module";
 import {TxType} from "./TxType/module";
 import {TxSubtype} from "./TxSubtypes/module";
+import {modalStyle} from "./styles";
 
 /* notes
 			<button type='button' onClick={() => getTxHistory().then((r: any) => console.log(r.data[1]))}>load</button>
@@ -89,16 +90,18 @@ function App() {
   const handleTypesResponse = (response: any) => setTxTypes(response.data);
   const handleSubtypesResponse = (response: any) => setTxSubtypes(response.data);
 
-  const saveTx = (dto: Tx) => {
-    setBalance(balance + dto.amount);
-    setTxHistoryState([dto, ...txHistory]);
-    postTx({id: dto.id, date: dto.date, partyId: dto.partyId, amount: dto.amount, typeId: dto.typeId, subtypeId: dto.subtypeId}).then(() => true);
-    setNextId(dto.id + 1);
+  const saveMethods = {
+    tx: (dto: Tx) => {
+      setBalance(balance + dto.amount);
+      setTxHistoryState([dto, ...txHistory]);
+      postTx({id: dto.id, date: dto.date, partyId: dto.partyId, amount: dto.amount, typeId: dto.typeId, subtypeId: dto.subtypeId}).then(() => true);
+      setNextId(dto.id + 1);
+    },
   };
 
   const toTxRows = () => txHistory.map( tx =>
     <span key={tx.id} className={styles.balance}>
-      {`${tx.date} ${toPartyString(tx.id, parties)} $${tx.amount} ${toTxTypeString(tx.id, txTypes)} ${toTxSubtypeString(tx.id, txSubtypes)}`}
+      {`${tx.date} ${toPartyString(tx.id, parties)} $ ${tx.amount} ${toTxTypeString(tx.id, txTypes)} ${toTxSubtypeString(tx.id, txSubtypes)}`}
     </span>
   );
 
@@ -119,15 +122,16 @@ function App() {
     <>
       <button type='button' onClick={() => setModalState(true)}>open</button>
       <div className={styles.txList}>
-        <span className={styles.balance}>{balance}</span>
+        <span className={styles.balance}>$ {balance}</span>
         { isInit && toTxRows() }
       </div>
       <Modal
+        style={modalStyle}
         isOpen={modalState}
         onRequestClose={() => setModalState(false)}
         contentLabel="this is the content label"
       >
-        <AddTx balance={balance} saveTx={saveTx} nextId={nextId}/>
+        <AddTx balance={balance} saveMethods={saveMethods} nextId={nextId}/>
       </Modal>
     </>
   );
