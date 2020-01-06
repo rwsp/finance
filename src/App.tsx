@@ -32,8 +32,12 @@ const styles = {
 
 const axios = require("axios");
 
-const getTxHistoryPromise = async () => {
+const getTxListPromise = async () => {
   return await axios.get("http://localhost:4000/tx");
+};
+
+const getTypeListPromise = async () => {
+  return await axios.get("http://localhost:4000/types");
 };
 
 const postTx = async (tx: Tx) =>{
@@ -46,43 +50,48 @@ function App() {
   const [modalState, setModalState] = useState(false);
   const [txList, setTxList] = useState([] as Tx[]);
   const [partyList, setPartyList] = useState([] as string[]);
-  const [typeList, setTypeList] = useState([] as TxType[]);
+  const [incomeTypeList, setIncomeTypeList] = useState([] as TxType[]);
+  const [purchaseTypeList, setPurchaseTypeList] = useState([] as TxType[]);
   const [isInit, setIsInit] = useState(false);
   const [balance, setBalance] = useState(0);
 
   const refreshState = (_txList: Tx[]) => {
     const _partyList: string[] = [];
-    const _typeList: TxType[] = [];
     let _balance = 0;
 
     _txList.forEach(tx => {
       if (!_partyList.includes(tx.party)) _partyList.push(tx.party);
-      if (!_typeList.some(type => type.name === tx.type)) _typeList.push({name: tx.type, subtypes: [tx.subtype]});
-      const ourType = _typeList.find(type => type.name === tx.type);
-      if ( !ourType!.subtypes.includes(tx.subtype) ) ourType!.subtypes.push(tx.subtype);
       _balance += tx.amount;
     });
     setBalance(_balance);
     setTxList(_txList);
     setPartyList(_partyList);
-    setTypeList(_typeList);
   };
 
   const handleTxResponse = (response: any) => {
     const _txList: Tx[] = [];
 
-    response.data.forEach((tx: Tx) => {
-      _txList.push({...tx});
-    });
+    response.data.forEach((tx: Tx) => {_txList.push({...tx});});
 
     refreshState(_txList);
+  };
+
+  const handleTypeResponse = (response: any) => {
+    const purchaseTypes: TxType[] = [];
+    const incomeTypes: TxType[] = [];
+
+    response.data.purchase.forEach((t: TxType) => purchaseTypes.push(t));
+    setPurchaseTypeList(purchaseTypes);
+    response.data.income.forEach((t: TxType) => incomeTypes.push(t));
+    setIncomeTypeList(incomeTypes);
   };
 
   const saveMethods = {
     tx: (dto: Tx) => {
       setBalance(balance + dto.amount);
       refreshState([dto, ...txList]);
-      postTx({date: dto.date, party: dto.party, amount: dto.amount, type: dto.type, subtype: dto.subtype}).then(() => true);
+      postTx({date: dto.date, party: dto.party, amount: dto.amount, type: dto.type, subtype: dto.subtype})
+        .then(() => true);
     },
   };
 
@@ -95,7 +104,8 @@ function App() {
   //start exec
   if (!isInit) {
     Promise.all(    [
-      getTxHistoryPromise().then(handleTxResponse),
+      getTxListPromise().then(handleTxResponse),
+      getTypeListPromise().then(handleTypeResponse),
     ]).then(() => {
       setIsInit(true);
       console.log("init");
@@ -112,12 +122,14 @@ function App() {
         </div>
       )}
       <Modal
-        style={modalStyle}
+        style={modalStyle.modal}
         isOpen={modalState}
+        shouldCloseOnEsc={true}
+        shouldCloseOnOverlayClick={false}
         onRequestClose={() => setModalState(false)}
         contentLabel="this is the content label"
       >
-        <AddTx balance={balance} saveMethods={saveMethods}/>
+        <AddTx balance={balance} saveMethods={saveMethods} incomeTypeList={incomeTypeList} purchaseTypeList={purchaseTypeList}/>
       </Modal>
     </>
   );

@@ -4,25 +4,189 @@
       "id": 0,
       "date": "2020-01-01",
       "party": "Wal-Mart",
-      "amount": -12.34,
-      "type": "Food",
-      "subtype": "Grocery"
+      "amount": -1,
+      "type": "food",
+      "subtype": "grocery"
     },
     {
       "date": "01-01-1990",
-      "party": "a",
-      "amount": -1,
-      "type": "Food",
-      "subtype": "Fast",
+      "party": "walgreens",
+      "amount": -9,
+      "type": "utilities",
+      "subtype": "cell",
       "id": 1
     },
     {
       "date": "01-01-1990",
-      "party": "Wal-Mart",
-      "amount": -10,
-      "type": "Home",
-      "subtype": "Decor",
+      "party": "mh",
+      "amount": 100,
+      "type": "utilities",
+      "subtype": "cell",
       "id": 2
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -99,
+      "type": "food",
+      "subtype": "fast",
+      "id": 3
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -199,
+      "type": "food",
+      "subtype": "grocery",
+      "id": 4
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 1999,
+      "type": "food",
+      "subtype": "snacks",
+      "id": 5
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -12,
+      "type": "utilities",
+      "subtype": "power",
+      "id": 6
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -123,
+      "type": "utilities",
+      "subtype": "cell",
+      "id": 7
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -1,
+      "type": "food",
+      "subtype": "grocery",
+      "id": 8
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 5,
+      "type": "direct deposit",
+      "subtype": "salary",
+      "id": 9
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 51,
+      "type": "direct deposit",
+      "subtype": "bonus",
+      "id": 10
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 511,
+      "type": "direct deposit",
+      "subtype": "tax return",
+      "id": 11
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 511,
+      "type": "cash",
+      "subtype": "music",
+      "id": 12
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 511,
+      "type": "cash",
+      "subtype": "misc",
+      "id": 13
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 511,
+      "type": "direct deposit",
+      "subtype": "tax return",
+      "id": 14
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -511,
+      "type": "food",
+      "subtype": "fast",
+      "id": 15
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": 511,
+      "type": "utilities",
+      "subtype": "cell",
+      "id": 16
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -511,
+      "type": "food",
+      "subtype": "fast",
+      "id": 17
+    },
+    {
+      "date": "01-01-1990",
+      "party": "walmart",
+      "amount": -511,
+      "type": "utilities",
+      "subtype": "power",
+      "id": 18
     }
-  ]
+  ],
+  "types": {
+    "purchase": [
+      {
+        "name": "food",
+        "subtypes": [
+          "fast",
+          "grocery",
+          "snacks"
+        ]
+      },
+      {
+        "name": "utilities",
+        "subtypes": [
+          "power",
+          "cell"
+        ]
+      }
+    ],
+    "income": [
+      {
+        "name": "direct deposit",
+        "subtypes": [
+          "salary",
+          "bonus",
+          "tax return"
+        ]
+      },
+      {
+        "name": "cash",
+        "subtypes": [
+          "music",
+          "misc"
+        ]
+      }
+    ]
+  }
 }
